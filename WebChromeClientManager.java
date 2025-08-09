@@ -10,10 +10,16 @@ public class WebChromeClientManager extends WebChromeClient {
 
     public WebChromeClientManager(ProgressBar progressBar) {
         this.progressBar = progressBar;
+        if (this.progressBar != null) {
+            this.progressBar.setMax(100);
+            this.progressBar.setProgress(0);
+            this.progressBar.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public void onProgressChanged(WebView view, int newProgress) {
+        if (progressBar == null) return;
         if (newProgress == 100) {
             progressBar.setVisibility(View.GONE);
         } else {
